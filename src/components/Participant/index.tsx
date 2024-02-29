@@ -6,12 +6,11 @@
         return(
             <View>
                 <Text style={styles.container}>Ricardo</Text>
-                <TouchableOpacity>
+                <TouchableOpacity style={styles.button}>
                     <Text>
-                        +
+                        -
                     </Text>
                 </TouchableOpacity>    
-            )
             </View>
-           
+            )      
     }
