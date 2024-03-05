@@ -2,12 +2,16 @@
 
     import { styles } from "./styles";
 
-    export function Participant(){
+    type Props = {
+        name: string;
+        onRemove: () => void;
+    }
+    export function Participant(props: Props){
         return(
-            <View>
-                <Text style={styles.container}>Ricardo</Text>
-                <TouchableOpacity style={styles.button}>
-                    <Text>
+            <View style={styles.container}>
+                <Text style={styles.name}>{props.name}</Text>
+                <TouchableOpacity style={styles.button} onPress={props.onRemove}>
+                    <Text style={styles.buttonText}>
                         -
                     </Text>
                 </TouchableOpacity>    

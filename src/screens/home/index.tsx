@@ -9,6 +9,11 @@ export function Home() {
     console.log("add button");
   }
 
+  function handleParticipantRemove(name: string){
+    console.log(`remover participante!${name}`);
+
+  }
+
   return (
     <View style={styles.container}>
       <Text key='1' style={styles.eventName}>Open up App.tsx to stdddart working on your app!33</Text>
@@ -31,7 +36,10 @@ export function Home() {
             </Text>
           </TouchableOpacity>
         </View>
-        <Participant />
+        <Participant name="assadasd" onRemove = {() => handleParticipantRemove("assadasd")} />
+        <Participant name="qwewqe" onRemove = {() => handleParticipantRemove("qwewqe")} />
+        <Participant name="vxcvxcvcx" onRemove = {() => handleParticipantRemove("vxcvxcvcx")} />
+        <Participant name="hgkghkghk" onRemove = {() => handleParticipantRemove("hgkghkghk")} />
     </View>
   );
 }
