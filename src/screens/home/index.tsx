@@ -1,17 +1,30 @@
 
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, FlatList, Alert} from 'react-native';
 import {styles} from './styles'
 import { Participant } from '../../components/Participant';
 
 export function Home() {
-
+  const participants = ['22222', '33333', '44444','55555','1111111','6666666','7777777','888888','9999999','10101010'];
   function handleParticipantAdd(){
+    if(participants.includes('22222')){
+      return Alert.alert("participante existe", '2222')
+    }
     console.log("add button");
+
   }
 
   function handleParticipantRemove(name: string){
     console.log(`remover participante!${name}`);
-
+    Alert.alert("Remover", `deseja remover ${name}?`,[
+      {
+        text: "Sim",
+        onPress: () =>Alert.alert("Deltado"),
+      },
+      {
+        text: "Não",
+        style: 'cancel',
+      }
+    ]);
   }
 
   return (
@@ -36,10 +49,38 @@ export function Home() {
             </Text>
           </TouchableOpacity>
         </View>
-        <Participant name="assadasd" onRemove = {() => handleParticipantRemove("assadasd")} />
+
+        {/* <ScrollView>
+        {participants.map(participant => (
+          <Participant
+            key={participant}
+            name={participant}
+            onRemove={() => handleParticipantRemove({participant})}
+            />
+        ))}
+        </ScrollView> */}
+        <FlatList 
+          data={participants}
+          keyExtractor={item => item}
+          renderItem={({item}) => (
+          <Participant
+              key={item}
+              name={item}
+              onRemove={() => handleParticipantRemove(item)}
+              />
+          )}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={() => (
+            <Text style={styles.listEmptyText}>
+              Ninguém chegou, add.....
+            </Text>
+          )}
+        />
+
+        {/* <Participant name="assadasd" onRemove = {() => handleParticipantRemove("assadasd")} />
         <Participant name="qwewqe" onRemove = {() => handleParticipantRemove("qwewqe")} />
         <Participant name="vxcvxcvcx" onRemove = {() => handleParticipantRemove("vxcvxcvcx")} />
-        <Participant name="hgkghkghk" onRemove = {() => handleParticipantRemove("hgkghkghk")} />
+        <Participant name="hgkghkghk" onRemove = {() => handleParticipantRemove("hgkghkghk")} /> */}
     </View>
   );
 }
